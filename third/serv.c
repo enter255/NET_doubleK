@@ -22,6 +22,7 @@ int main (int argc, char **argv)
 	fd_set reads, cpyReads;
 	socklen_t addrSz;
 	int fdMax, strLen, fdNum, i;
+	int maxPlayer=0;
 
 	if(argc != 2) {
 		printf("Usage : %s <PORT>\n", argv[0]);
@@ -50,13 +51,23 @@ int main (int argc, char **argv)
 
 	FD_ZERO(&reads);
 	FD_SET(serv_sock, &reads);
-	fdMax = serv_sock;
+	
+	/*input palyer number*/
+	printf("input max plyer number : ");
+	scanf("%d",&maxPlayer);
+	fdMax = 3;
 
+	
+	
+
+
+
+	/*start game*/
 	printf("##before go to while\n");
 	while(1) 
 	{
-		cpyReads = reads;
-		timeout.tv_sec = 10;	// 10 sec for timeout -> player's thinking time is max 10 sec
+		cpyReads = reads; 
+		timeout.tv_sec = 10; // 10 sec for timeout -> player's thinking time is max 10 sec
 		timeout.tv_usec = 10000;
 
 		printf("##before start select\n");
